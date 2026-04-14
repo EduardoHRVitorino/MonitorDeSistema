@@ -11,19 +11,19 @@ def MonitoramentoDeSistema():
     
 
     notification = Notify()
-    notification.icon = 'icon/icone.webp'
     if (cpu <= 10):
         usocpu = "Consumo baixo"
     elif (cpu <= 30):
         usocpu = "Consumo moderado"
-    elif (cpu <= 50):
+    elif (cpu <= 70):
         usocpu = "Consumo intermediário"
     elif (cpu <= 90):
         usocpu = "Consumo alto"
         notification = Notify()
         notification.title ='Consumo de CPU alto'
         notification.message = f'O consumo de seu processador está em {cpu}%'
-        
+        notification.icon = 'icon/icone.webp'
+        notification.duration = 0.5
         notification.send()
         
     else:
@@ -31,6 +31,8 @@ def MonitoramentoDeSistema():
         
         notification.title = 'Consumo de CPU MUITO ALTO'
         notification.message = f'O consumo de seu processador está em {cpu}%'
+        notification.icon = 'icon/icone.webp'
+        notification.duration = 0.5
         notification.send()
 
         
@@ -61,4 +63,4 @@ def MonitoramentoDeSistema():
 while True:
     
     MonitoramentoDeSistema()
-    time.sleep(3)
+    time.sleep(1)
