@@ -2,13 +2,13 @@ import psutil
 import time
 import os
 from notifypy import Notify
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
 def MonitoramentoDeSistema():
     cpu = psutil.cpu_percent(interval=None, percpu=False)
     ram = psutil.virtual_memory().percent
     Disk = psutil.disk_usage(path='/').percent
     Swap = psutil.swap_memory().percent
-    os.system("clear")
-    
 
     notification = Notify()
     if (cpu <= 10):
@@ -22,7 +22,7 @@ def MonitoramentoDeSistema():
         notification = Notify()
         notification.title ='Consumo de CPU alto'
         notification.message = f'O consumo de seu processador está em {cpu}%'
-        notification.icon = 'icon/icone.webp'
+        notification.icon = ""
         notification.duration = 0.5
         notification.send()
         
@@ -63,4 +63,5 @@ def MonitoramentoDeSistema():
 while True:
     
     MonitoramentoDeSistema()
-    time.sleep(1)
+    time.sleep(1.5)
+    clear()
